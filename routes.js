@@ -8,5 +8,6 @@ routes.get("/", (req, res) => {
 });
 routes.get("/boloes", bolaoController.findAll);
 routes.post("/bolao", bolaoController.addBolao);
+routes.get("/numeros", bolaoController.findNumbers)
 
 export { routes as default };

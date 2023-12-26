@@ -13,4 +13,22 @@ async function addBolao(req, res) {
     res.json(saida);    
 }
 
-export default { findAll, addBolao }; 
+async function findNumbers(req, res){
+    const numeros = []
+    for (let i=0 ; i<60 ;i++){
+        numeros.push(0)
+    }
+    
+    const boloes = await BolaoRepository.findAll({order: ['nome']})
+    boloes.forEach(bolao => {
+        const numerosSelecionados = bolao.numeros
+        let tokens = numerosSelecionados.split(",")
+        tokens.forEach(num => {
+            numeros[num-1] ++
+        })
+    })
+
+    res.json(numeros)
+}
+
+export default { findAll, addBolao, findNumbers }; 
