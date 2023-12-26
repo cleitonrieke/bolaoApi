@@ -28,7 +28,13 @@ async function findNumbers(req, res){
         })
     })
 
-    res.json(numeros)
+    const saida = []
+    for (let i=1; i<=60; i++){
+        saida.push({ numero: i, qtd: numeros[i-1]})
+    }
+    let numerosOrdenados = saida.sort(
+        (p1, p2) => (p1.qtd < p2.qtd) ? 1 : (p1.qtd > p2.qtd) ? -1 : 0);
+    res.json(numerosOrdenados)
 }
 
 export default { findAll, addBolao, findNumbers }; 
